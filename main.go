@@ -7,7 +7,7 @@ import (
 )
 
 func init(){
-	var dbCon string = "postgres://user:pass@localhost/bookstore"
+	var dbCon string = "tinyurl:tinyurl@/tinyurl_db"
 	models.InitDB(dbCon)
 }
 

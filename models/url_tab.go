@@ -13,8 +13,8 @@ type Url struct {
 }
 
 const (
-	full_url_query 		string = "SELECT * FROM url_tab WHERE short_url=$1"
-	insert_url_query 	string = "INSERT INTO url_tab(short_url,full_url,create_time,active) VALUES($1,$2,$3,$4)"
+	full_url_query 		string = "SELECT * FROM url_tab WHERE short_url=?"
+	insert_url_query 	string = "INSERT INTO url_tab(short_url,full_url,create_time,active) VALUES(?,?,?,?)"
 )
 
 func GetFullUrl(urlName string) (*Url, error){

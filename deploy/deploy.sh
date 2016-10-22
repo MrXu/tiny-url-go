@@ -31,8 +31,9 @@ mysql -u${USER_NAME} -p${PASSWORD} ${DB_NAME} < ${DIR}/create_tables.sql
 
 echo "building go app ..."
 
-cp -R ${DIR}/../../tinyUrl $HOME/go/src/
-cd $HOME/go/src/tinyUrl/
+cp -R ${DIR}/../../tiny-url-go $HOME/go/src/
+mv $HOME/go/src/tiny-url-go $HOME/go/src/tinyUrl
+cd $HOME/go/src/tinyUrl
 
 go get github.com/go-sql-driver/mysql
 go get github.com/gin-gonic/gin

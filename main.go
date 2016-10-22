@@ -20,8 +20,8 @@ func main(){
 	group
 	 */
 	v1 := r.Group("/api/v1")
-	v1.GET("/original", apis.GetUrl)
-	v1.POST("/shorten", apis.PostUrl)
+	v1.POST("/original", apis.GetOriginalUrl)
+	v1.POST("/shorten", apis.CreateNewShortenUrl)
 
 	r.Run(":8080")
 

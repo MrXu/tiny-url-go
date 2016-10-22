@@ -26,7 +26,7 @@ func GetFullUrl(urlName string) (*Url, error){
 		return nil,err
 	}
 
-	return target_url, nil
+	return &target_url, nil
 }
 
 func CreateUrl(urlName string) (*Url, error) {

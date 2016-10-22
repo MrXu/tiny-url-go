@@ -13,14 +13,14 @@ type Url struct {
 }
 
 const (
-	full_url_query 		string = "SELECT * FROM url_tab WHERE short_url=?"
+	full_url_query 		string = "SELECT short_url, full_url, create_time, active FROM url_tab WHERE short_url=?"
 	insert_url_query 	string = "INSERT INTO url_tab(short_url,full_url,create_time,active) VALUES(?,?,?,?)"
 )
 
 func GetFullUrl(urlName string) (*Url, error){
 
 	var target_url Url
-	err := db.QueryRow(full_url_query, urlName).Scan(&target_url)
+	err := db.QueryRow(full_url_query, urlName).Scan(&target_url.short_url, &target_url.full_url, &target_url.create_time, &target_url.active)
 
 	if err != nil{
 		return nil,err

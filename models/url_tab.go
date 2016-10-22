@@ -2,7 +2,6 @@ package models
 
 import (
 	"time"
-	"tinyUrl/utils"
 )
 
 type Url struct {

@@ -47,7 +47,7 @@ func CreateNewShortenUrl(c *gin.Context) {
 		return
 	}
 
-	host_url := c.Request.URL.String()
+	host_url := c.Request.Host
 	shorten_url := host_url+"/"+utils.UrlShortener()
 
 	short_url, err := models.CreateUrl(json.Url, shorten_url)

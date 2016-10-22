@@ -2,6 +2,8 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+sudo su
+
 apt-get update
 
 echo "installing golang and setting up GOPATH"

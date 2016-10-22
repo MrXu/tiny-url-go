@@ -6,8 +6,8 @@ import (
 )
 
 type Url struct {
-	short_url 	string
-	full_url 	string
+	Short_url string
+	Full_url string
 	create_time 	int64
 	active 		int8
 }
@@ -20,7 +20,7 @@ const (
 func GetFullUrl(urlName string) (*Url, error){
 
 	var target_url Url
-	err := db.QueryRow(full_url_query, urlName).Scan(&target_url.short_url, &target_url.full_url, &target_url.create_time, &target_url.active)
+	err := db.QueryRow(full_url_query, urlName).Scan(&target_url.Short_url, &target_url.Full_url, &target_url.create_time, &target_url.active)
 
 	if err != nil{
 		return nil,err
@@ -29,7 +29,7 @@ func GetFullUrl(urlName string) (*Url, error){
 	return &target_url, nil
 }
 
-func CreateUrl(urlName string) (*Url, error) {
+func CreateUrl(urlName string, shorten_url string) (*Url, error) {
 	stmt, err := db.Prepare(insert_url_query)
 
 	if err != nil {
@@ -37,7 +37,7 @@ func CreateUrl(urlName string) (*Url, error) {
 	}
 
 	var time_stamp int64 = int64(time.Now().Unix())
-	var short_url string = utils.UrlShortener(urlName)
+	var short_url string = shorten_url
 	_, err = stmt.Exec(short_url, urlName, time_stamp, 1)
 
 	if err != nil {
@@ -45,8 +45,8 @@ func CreateUrl(urlName string) (*Url, error) {
 	}
 
 	return &Url{
-		short_url:short_url,
-		full_url: urlName,
+		Short_url:short_url,
+		Full_url: urlName,
 		create_time:time_stamp,
 		active:1,
 	}, nil
